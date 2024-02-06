@@ -11,20 +11,19 @@ const storage = multer.diskStorage({
     filename: function (req, file, cb) {
       cb(null, Date.now() + '-' + file.originalname); // Filename in the destination folder
     }
-  });
+});
   
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
   
   // Define a route to handle file uploads
-  app.post('/uploadFile', upload.single('file'), (req, res) => {
+app.post('/uploadFile', upload.single('file'), (req, res) => {
     // 'file' is the name attribute of your file input field in the form
     // req.file contains information about the uploaded file
     if (!req.file) {
       return res.status(400).send('No file uploaded.');
     }
-    res.send('File uploaded successfully.');
     res.end('File uploaded successfully.');
-  });
+});
 
 
 
